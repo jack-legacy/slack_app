@@ -1,6 +1,7 @@
 .PHONY: app
 
 TMP_CONTAINER_NAME := tmp_container
+APP_CONTAINER_NAME := app_container
 
 IMAGE_NAME := node
 IMAGE_VERSION := 20.9.0
@@ -32,9 +33,13 @@ endif
 
 ## Server
 app: node_modules ## Run server with docker
-	docker run --rm -it --init -v ${CURDIR}:${WORKDIR} --env-file=.env -p 3000:3000 -w ${WORKDIR} ${IMAGE_NAME}:${IMAGE_VERSION} node index.js
+	docker run --rm -it --init -v ${CURDIR}:${WORKDIR} --env-file=.env -p 3000:3000 -w ${WORKDIR} --name ${APP_CONTAINER_NAME} ${IMAGE_NAME}:${IMAGE_VERSION} npm start
 node_modules: package.json package-lock.json
 	docker run --rm -it --init -v ${CURDIR}:${WORKDIR} --env-file=.env -w ${WORKDIR} ${IMAGE_NAME}:${IMAGE_VERSION} npm ci
+
+## Attach
+attach: ## Attach to running container
+	docker exec -it ${APP_CONTAINER_NAME} bash
 
 ## Help:
 help: ## Show this help.
