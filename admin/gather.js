@@ -40,12 +40,14 @@ const updateSlackMessage = async (players) => {
   // メッセージを更新する
   if (ts) {
     await web.chat.update({
+      text: "gatherメンバー更新中",
       channel: CHANNEL.ADMIN_GATHER,
       ts,
       blocks,
     });
   } else {
     const result = await web.chat.postMessage({
+      text: "gatherメンバー更新中",
       channel: CHANNEL.ADMIN_GATHER,
       blocks,
     });
@@ -54,9 +56,9 @@ const updateSlackMessage = async (players) => {
 
   // gatherTSから1ヶ月以上経過していたら、gatherTSをnullにする
   if (ts) {
-    const tsDate = new Date(parseInt(ts));
-    const now = new Date();
-    if (now - tsDate > 60 * 60 * 24 * 30) {
+    const monthAgo = new Date();
+    monthAgo.setMonth(monthAgo.getMonth() - 1);
+    if (ts - monthAgo.getTime() / 1000 < 0) {
       gatherTS = null;
     }
   }
