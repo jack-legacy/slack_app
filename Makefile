@@ -32,7 +32,7 @@ endif
 
 ## Server
 app: node_modules ## Run server with docker
-	docker run --rm -it --init -v ${CURDIR}:${WORKDIR} --env-file=.env -p 3000:3000 -w ${WORKDIR} ${IMAGE_NAME}:${IMAGE_VERSION} node app.js
+	docker run --rm -it --init -v ${CURDIR}:${WORKDIR} --env-file=.env -p 3000:3000 -w ${WORKDIR} ${IMAGE_NAME}:${IMAGE_VERSION} node index.js
 node_modules: package.json package-lock.json
 	docker run --rm -it --init -v ${CURDIR}:${WORKDIR} --env-file=.env -w ${WORKDIR} ${IMAGE_NAME}:${IMAGE_VERSION} npm ci
 
