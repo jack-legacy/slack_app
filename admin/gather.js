@@ -17,7 +17,7 @@ const updateSlackMessage = async (players) => {
       type: "section",
       text: {
         type: "mrkdwn",
-        text: `:gathertown: Gatherのオフィスにいる人たち _(最終更新: ${new Date().toLocaleString(
+        text: `:gathertown: Gatherにいる人たち _(最終更新: ${new Date().toLocaleString(
           "ja-JP",
           { timeZone: "Asia/Tokyo" }
         )})_ :gathertown:`,
