@@ -2,7 +2,7 @@ const { Player } = require("@gathertown/gather-game-client");
 const { web } = require("../app.js");
 const { addCronJobs } = require("../middleware/cronJob.js");
 const { game } = require("../middleware/gather.js");
-const CHANNEL = "C064783DT8V";
+const { CHANNEL } = require("../constants.js");
 let gatherTS = null;
 
 /**
@@ -40,13 +40,13 @@ const updateSlackMessage = async (players) => {
   // メッセージを更新する
   if (ts) {
     await web.chat.update({
-      channel: CHANNEL,
+      channel: CHANNEL.ADMIN_GATHER,
       ts,
       blocks,
     });
   } else {
     const result = await web.chat.postMessage({
-      channel: CHANNEL,
+      channel: CHANNEL.ADMIN_GATHER,
       blocks,
     });
     gatherTS = result.ts;
