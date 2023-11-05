@@ -16,3 +16,8 @@ const app = new App({
 });
 
 exports.app = app;
+
+const { WebClient } = require("@slack/web-api");
+const web = new WebClient(process.env.SLACK_BOT_TOKEN);
+
+exports.web = web;
