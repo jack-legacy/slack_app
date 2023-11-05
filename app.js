@@ -12,6 +12,14 @@ const app = new App({
       method: ["GET"],
       handler: cronHandler,
     },
+    {
+      path: "/health-check",
+      method: ["GET"],
+      handler: (req, res) => {
+        res.writeHead(200);
+        res.end("Health check information displayed here!");
+      },
+    },
   ],
 });
 
