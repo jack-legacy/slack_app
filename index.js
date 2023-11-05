@@ -1,4 +1,5 @@
 const { app } = require("./app.js");
+require("./middleware/gather.js");
 
 // Load all files in the current directory
 require("./loader.js");

@@ -14,6 +14,8 @@
     "prettier": "^3.0.3"
   },
   "dependencies": {
-    "@slack/bolt": "^3.14.0"
+    "@gathertown/gather-game-client": "^43.0.1",
+    "@slack/bolt": "^3.14.0",
+    "isomorphic-ws": "^5.0.0"
   }
 }
