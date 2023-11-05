@@ -32,7 +32,7 @@ const updateSlackMessage = async (players) => {
       type: "section",
       text: {
         type: "mrkdwn",
-        text: `* ${player.name}`,
+        text: `:online: ${player.name}`,
       },
     });
   });
